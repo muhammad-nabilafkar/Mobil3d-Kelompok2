@@ -431,13 +431,6 @@ GLvoid DrawGLScene()
     glutSwapBuffers();
     }
 }
-    //*************************************************************
-    glPopMatrix();
-    glEnable(GL_DEPTH_TEST);
-    glutPostRedisplay();
-    glutSwapBuffers();
-    }
-}
 
 //------function
 void NormalKey(GLubyte key, GLint x, GLint y)
