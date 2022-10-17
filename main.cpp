@@ -346,10 +346,91 @@ GLvoid DrawGLScene()
 
     //************JENDELA SUDUT
 
+    glBegin(GL_TRIANGLES);                /* start drawing the cube.*/
+      /* top of cube*/
+    glColor3f(0.3,0.3,0.3);
+    glVertex3f( 0.6, 0.5,0.6);
+    glVertex3f( 0.7,0.65,0.6);       //tri front window
+    glVertex3f(0.7,0.5,0.6);
+
+    glVertex3f( 0.6, 0.5,0.2);
+    glVertex3f( 0.7,0.65,0.2);       //tri front window
+    glVertex3f(0.7,0.5,0.2);
+
+    glVertex3f( 1.7, 0.65,0.2);
+    glVertex3f( 1.8,0.5,0.2);       //tri back window
+    glVertex3f( 1.7,0.5,0.2);
+
+    glVertex3f( 1.7, 0.65,0.6);
+    glVertex3f( 1.8,0.5,0.6);       //tri back window
+    glVertex3f(1.7,0.5,0.6);
+
+    glEnd();
+
+
     //************KNALPPOT
-
+    glPushMatrix();
+    glColor3f(0.3,0.3,0.7);
+    glTranslatef(1.65,0.2,0.3);
+    glRotatef(90.0,0,1,0);
+    gluCylinder(t,0.02,0.03,.5,10,10);
+    glPopMatrix();
     //********************BAN MOBIL
+    glColor3f(0.7,0.7,0.7);
+    glPushMatrix();
+    glBegin(GL_LINE_STRIP);
+    for(theta=0;theta<360;theta=theta+40)
+    {
+        glVertex3f(0.6,0.2,0.62);
+        glVertex3f(0.6+(0.08*(cos(((theta+angle)*3.14)/180))),0.2+(0.08*(sin(((theta+angle)*3.14)/180))),0.62);
+    }
+    glEnd();
 
+    glBegin(GL_LINE_STRIP);
+    for(theta=0;theta<360;theta=theta+40)
+    {
+        glVertex3f(0.6,0.2,0.18);
+        glVertex3f(0.6+(0.08*(cos(((theta+angle)*3.14)/180))),0.2+(0.08*(sin(((theta+angle)*3.14)/180))),0.18);
+    }
+    glEnd();
+
+    glBegin(GL_LINE_STRIP);
+    for(theta=0;theta<360;theta=theta+40)
+    {
+        glVertex3f(1.7,0.2,0.18);
+        glVertex3f(1.7+(0.08*(cos(((theta+angle)*3.14)/180))),0.2+(0.08*(sin(((theta+angle)*3.14)/180))),0.18);
+          }
+    glEnd();
+
+    glBegin(GL_LINE_STRIP);
+    for(theta=0;theta<360;theta=theta+40)
+    {
+        glVertex3f(1.7,0.2,0.62);
+        glVertex3f(1.7+(0.08*(cos(((theta+angle)*3.14)/180))),0.2+(0.08*(sin(((theta+angle)*3.14)/180))),0.62);
+    }
+    glEnd();
+
+    glTranslatef(0.6,0.2,0.6);
+    glColor3f(0,0,0);
+    glutSolidTorus(0.025,0.07,10,25);
+
+    glTranslatef(0,0,-0.4);
+    glutSolidTorus(0.025,0.07,10,25);
+
+    glTranslatef(1.1,0,0);
+    glutSolidTorus(0.025,0.07,10,25);
+
+    glTranslatef(0,0,0.4);
+    glutSolidTorus(0.025,0.07,10,25);
+    glPopMatrix();
+
+    //*************************************************************
+    glPopMatrix();
+    glEnable(GL_DEPTH_TEST);
+    glutPostRedisplay();
+    glutSwapBuffers();
+    }
+}
     //*************************************************************
     glPopMatrix();
     glEnable(GL_DEPTH_TEST);
