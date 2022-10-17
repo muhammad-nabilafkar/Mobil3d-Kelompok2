@@ -212,23 +212,185 @@ GLvoid DrawGLScene()
 //------function
 void NormalKey(GLubyte key, GLint x, GLint y)
 {
+    switch ( key )
+    {
+        case ESCAPE : printf("ESC pressed. Exit.\n");
+        glutDestroyWindow(window);
+        exit(0);
+        break;
+
+        case ' ':view=1;
+        DrawGLScene();
+        break;
+
+        case 'x':
+        xangle += 5.0;
+        glutPostRedisplay();
+        break;
+
+        case 'X':
+        xangle -= 5.0;
+        glutPostRedisplay();
+        break;
+
+        case 'y':
+        yangle += 5.0;
+        glutPostRedisplay();
+        break;
+
+        case 'Y':
+        yangle -= 5.0;
+        glutPostRedisplay();
+        break;
+
+        case 'z':
+        zangle += 5.0;
+        glutPostRedisplay();
+        break;
+
+        case 'Z':
+        zangle -= 5.0;
+        glutPostRedisplay();
+        break;
+
+        case 'u':                          /* Move up */
+        yt += 0.2;
+        glutPostRedisplay();
+        break;
+
+        case 'U':
+        yt -= 0.2;                      /* Move down */
+        glutPostRedisplay();
+        break;
+
+        case 'f':                          /* Move forward */
+        zt += 0.2;
+        glutPostRedisplay();
+        break;
+
+        case 'F':
+        zt -= 0.2;                      /* Move away */
+        glutPostRedisplay();
+        break;
+
+        default:
+        break;
+    }
 
 }
 
 //----------------MOBIL BERGERAK
 static void SpecialKeyFunc( int Key, int x, int y )
 {
+    switch ( Key )
+    {
+        case GLUT_KEY_RIGHT:
+        if(!wheelflag)
+        xt += 0.2;
+        if(wheelflag)
+    {
+        angle+=5;
+		xw+=0.2;
+    }
+    glutPostRedisplay();
+    break;
 
+    case GLUT_KEY_LEFT:
+    if(!wheelflag)
+    xt -= 0.2;
+    if(wheelflag)
+    {
+        angle+=5;
+		xw-=0.2;
+    }
+    glutPostRedisplay();
+    break;
+	}
 }
 
 void myMenu(int id)
 {
+     if (id==1)
+	{
+		flag1=0;
+        wheelflag=0;
+        glutPostRedisplay();
+	}
+	if(id ==2)
+	{
+		flag1=1;
+		flag2=0;
+		wheelflag=0;
+		xangle += 5.0;
+		glutPostRedisplay();
+	}
+	if (id==4)
+	{
+        wheelflag=1;
+        glutPostRedisplay();
+	}
+    if(id==12)
+	{
+        aflag=1;
+        day=1;
+        glClearColor(1,1,1,1);
+        glDisable(GL_FOG);
+        glutPostRedisplay();
+	}
+	if(id==13)
+	{
+        aflag=0;
+        day=0;
+        flag2=2;
+        glClearColor(0.1,0.1,0.1,0);
+        GLfloat fogcolour[4]={0.0,0.0,0.0,1.0};
 
+        glFogfv(GL_FOG_COLOR,fogcolour);
+        glFogf(GL_FOG_DENSITY,0.5);
+        glFogi(GL_FOG_MODE,GL_EXP);
+        glHint(GL_FOG_HINT, GL_FASTEST);
+        glEnable(GL_FOG);
+
+        glutPostRedisplay();
+    }
 }
 
 void colorMenu(int id)
 {
-
+    if (id==6)
+	{
+        r=g=0;
+		b=1;
+        glutPostRedisplay();
+	}
+    if(id ==7)
+	{
+		r=0.8;
+		b=g=0;
+		glutPostRedisplay();
+	}
+	if(id==8)
+	{
+	    g=1;
+		r=b=0;
+		glutPostRedisplay();
+	}
+	if (id==9)
+	{
+        r=b=g=0;
+        glutPostRedisplay();
+	}
+	if(id==10)
+	{
+		b=0;
+		r=g=1;
+        glutPostRedisplay();
+	}
+	if(id==11)
+	{
+		b=r=g=.7;
+        glutPostRedisplay();
+	}
 }
 
 int main(int argc, char **argv)
