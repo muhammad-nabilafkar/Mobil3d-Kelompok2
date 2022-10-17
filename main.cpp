@@ -6,6 +6,8 @@
 
 #define ESCAPE 27
 
+//Mobil3d Kelompok2
+
 GLint window;
 GLint window2;
 GLint Xsize=1000;
