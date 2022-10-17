@@ -282,9 +282,67 @@ GLvoid DrawGLScene()
     //*****************************JALANAN DAN EFEK RODA***********************************
     if(flag1)
     {
+        glPushMatrix();
+        glTranslatef(xw,0,0);
+        glColor3f(0,1,0);
+        glVertex3f(-100,0.1,-100);
+        glVertex3f(-100,0.1,0);         //a green surroundings
+        glVertex3f(100,0.1,0);
+        glVertex3f(100,0.1,-100);
 
+        glColor3f(0.7,0.7,0.7);
+        glVertex3f(-100,0.1,0);
+        glVertex3f(-100,0.1,0.45);         //a long road
+        glVertex3f(100,0.1,0.45);
+        glVertex3f(100,0.1,0);
+
+        glColor3f(1.0,0.75,0.0);
+        glVertex3f(-100,0.1,0.45);       //a median
+        glVertex3f(-100,0.1,0.55);
+        glVertex3f(100,0.1,0.55);
+        glVertex3f(100,0.1,0.45);
+
+        glColor3f(0.7,0.7,0.7);
+        glVertex3f(-100,0.1,0.55);
+        glVertex3f(-100,0.1,1);         //a long road
+        glVertex3f(100,0.1,1);
+        glVertex3f(100,0.1,0.55);
+
+        glColor3f(0,1,0);
+        glVertex3f(-100,0.1,1);
+        glVertex3f(-100,0.1,100);         //a green surroundings
+        glVertex3f(100,0.1,100);
+        glVertex3f(100,0.1,1);
+        glPopMatrix();
     }
     glEnd();
+
+    if(wheelflag)
+    {
+        glPushMatrix();
+        glTranslatef(xw,0,0);
+        glColor3f(0.5,.2,0.3);
+        glBegin(GL_QUADS);
+        for(i=0;i<200;i+=0.2)
+        {
+            glVertex3f(-100+i,0,1);
+            glVertex3f(-99.9+i,0,1);
+            glVertex3f(-99.9+i,0.2,1);
+            glVertex3f(-100+i,0.2,1);
+            i+=0.5;
+        }
+        for(i=0;i<200;i+=0.2)
+        {
+            glVertex3f(-100+i,0,0);
+            glVertex3f(-99.9+i,0,0);
+            glVertex3f(-99.9+i,0.2,0);
+            glVertex3f(-100+i,0.2,0);
+            i+=0.5;
+        }
+        glEnd();
+        glPopMatrix();
+    }
+
 
     //************JENDELA SUDUT
 
