@@ -97,14 +97,15 @@ void display1(void)
     glClear(GL_COLOR_BUFFER_BIT);
 	display_string(150,540,"Jurusan Teknik Informatika, Fakultas Teknik, Universitas Halu Oleo",1);
 	display_string(280,500,name3,1);
-	display_string(10,440,"MOUSE",2);
-	display_string(10,410,"PRESS RIGHT BUTTON FOR MENU",3);
-	display_string(10,370,"KEYBOARD",2);
-	display_string(10,340,"X-Y-Z KEYS FOR CORRESPONDING ROTATION",3);
-	display_string(10,280+30,"U-F FOR CAMERA VIEW SETTINGS",3);
-	display_string(10,250+30,"USE LEFT ARROW(<-) AND RIGHT ARROW(->) TO MOVE CAR",3);
-	display_string(10,220+30,"ESCAPE TO EXIT",3);
-	display_string(325,150+30,"PRESS SPACE BAR TO ENTER",2);
+	display_string(255,460,"KELOMPOK 2 GRAFIKA KOMPUTER",1);
+	display_string(10,410,"MOUSE",2);
+	display_string(10,380,"PRESS RIGHT BUTTON FOR MENU",3);
+	display_string(10,350,"KEYBOARD",2);
+	display_string(10,320,"X-Y-Z KEYS FOR CORRESPONDING ROTATION",3);
+	display_string(10,290,"U-F FOR CAMERA VIEW SETTINGS",3);
+	display_string(10,260,"USE LEFT ARROW(<-) AND RIGHT ARROW(->) TO MOVE CAR",3);
+	display_string(10,230,"ESCAPE TO EXIT",3);
+	display_string(325,170,"PRESS SPACE BAR TO ENTER",2);
 	glutPostRedisplay();
 	glutSwapBuffers();
 }
@@ -170,7 +171,7 @@ GLvoid DrawGLScene()
     }
     glEnd();}
 
-    glColor3f(1.0,.75,0.0);
+    glColor3f(1.0,0.75,0.0);
     glPointSize(30.0);
     glBegin(GL_POINTS);
     glVertex3f(0.2,0.3,0.3);
@@ -283,24 +284,24 @@ GLvoid DrawGLScene()
     glVertex3f(1.2, 0.5, 0.2);
     glVertex3f( 1.22,0.63,0.2);
 
-    glVertex3f(1.27,0.63,.2);
+    glVertex3f(1.27,0.63,0.2);
     glVertex3f(1.25,0.5,0.2);        //quad back window
     glVertex3f(1.65,0.5,0.2);
     glVertex3f(1.67,0.63,0.2);
 
     glColor3f(r,g,b);
     glVertex3f(0.7,0.65,0.2);
-    glVertex3f(0.7,0.5,.2);       //first separation
+    glVertex3f(0.7,0.5,0.2);       //first separation
     glVertex3f(0.75,0.5,0.2);
     glVertex3f(0.77,0.65,0.2);
 
     glVertex3f(1.2,0.65,0.2);
-    glVertex3f(1.2,0.5,.2);       //second separation
+    glVertex3f(1.2,0.5,0.2);       //second separation
     glVertex3f(1.25,0.5,0.2);
     glVertex3f(1.27,0.65,0.2);
 
     glVertex3f(1.65,0.65,0.2);
-    glVertex3f(1.65,0.5,.2);     //3d separation
+    glVertex3f(1.65,0.5,0.2);     //3d separation
     glVertex3f(1.7,0.5,0.2);
     glVertex3f(1.7,0.65,0.2);
 
@@ -327,17 +328,17 @@ GLvoid DrawGLScene()
 
     glColor3f(r,g,b);
     glVertex3f(0.7,0.65,0.6);
-    glVertex3f(0.7,0.5,.6);       //first separation
+    glVertex3f(0.7,0.5,0.6);       //first separation
     glVertex3f(0.75,0.5,0.6);
     glVertex3f(0.77,0.65,0.6);
 
     glVertex3f(1.2,0.65,0.6);
-    glVertex3f(1.2,0.5,.6);       //second separation
+    glVertex3f(1.2,0.5,0.6);       //second separation
     glVertex3f(1.25,0.5,0.6);
     glVertex3f(1.27,0.65,0.6);
 
     glVertex3f(1.65,0.65,0.6);
-    glVertex3f(1.65,0.5,.6);
+    glVertex3f(1.65,0.5,0.6);
     glVertex3f(1.7,0.5,0.6);
     glVertex3f(1.7,0.65,0.6);
     glEnd();
@@ -687,7 +688,7 @@ void colorMenu(int id)
 	}
 	if(id==11)
 	{
-		b=r=g=.7;
+		b=r=g=0.7;
         glutPostRedisplay();
 	}
 }

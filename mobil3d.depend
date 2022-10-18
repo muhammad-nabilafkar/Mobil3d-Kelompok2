@@ -6,10 +6,10 @@
 	<math.h>
 	<string.h>
 
-1664255845 c:\program files\codeblocks\mingw\include\gl\glut.h
+1426320928 c:\program files\codeblocks\mingw\include\gl\glut.h
 	"freeglut_std.h"
 
-1664255845 c:\program files\codeblocks\mingw\include\gl\freeglut_std.h
+1426320928 c:\program files\codeblocks\mingw\include\gl\freeglut_std.h
 	<windows.h>
 	<EGL/egl.h>
 	<GLES/gl.h>
@@ -19,4 +19,11 @@
 	<GL/gl.h>
 	<GL/glu.h>
 	<stdlib.h>
+
+1666085021 source:d:\my data all\desktop\projectmobil3d\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+	<math.h>
+	<string.h>
 
