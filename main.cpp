@@ -10,7 +10,7 @@
 
 GLint window;
 GLint window2;
-GLint Xsize=1000;
+GLint Xsize=1000; //ubah ukuran window
 GLint Ysize=800;
 float i,theta;
 GLint nml=0,day=1;
@@ -21,22 +21,22 @@ GLfloat xt=0.0,yt=0.0,zt=0.0,xw=0.0;
 GLfloat xs=1.0,ys=1.0,zs=1.0;
 GLfloat xangle=0.0,yangle=0.0,zangle=0.0,angle=0.0;
 
-GLfloat r=0,g=0,b=1;
+GLfloat r=0,g=0,b=1; //warna mobil
 GLint light=1;
 int count=1,flg=1;
-int view=0;
-int flag1=0,aflag=1;            //to switch car driving mode
-int flag2=0,wheelflag=0;   //to switch fog effect
+int view=0; //tampilan menu/mobil
+int cardriving=0,aflag=1;            //to switch car driving mode
+int kabut=0,wheelflag=0;   //to switch fog effect
 GLUquadricObj *t;
 
 static void SpecialKeyFunc( int Key, int x, int y );
 
 GLvoid Transform(GLfloat Width, GLfloat Height)
 {
-    glViewport(0, 0, Width, Height);
+    glViewport(0, 0, Width, Height); //letak awal mobil
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0,Width/Height,0.1,100.0);
+    gluPerspective(45.0,Width/Height,0.1,100.0); //jauh atau dekat
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -93,8 +93,9 @@ void display_string(int x, int y, char *string, int font)
 
 void display1(void)
 {
-	glClearColor(1.0,1.0,1.0,1.0);
+	glClearColor(1.0,1.0,1.0,1.0); //warna menu
     glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(0.8,0.52,1.0);
 	display_string(150,540,"Jurusan Teknik Informatika, Fakultas Teknik, Universitas Halu Oleo",1);
 	display_string(280,500,name3,1);
 	display_string(255,460,"KELOMPOK 2 GRAFIKA KOMPUTER",1);
@@ -113,7 +114,7 @@ void display1(void)
 GLvoid DrawGLScene()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    if(view==0)
+    if(view==0) //menampilkan menu
     {
         init();
         display1();
@@ -123,9 +124,9 @@ GLvoid DrawGLScene()
     if(count==1)
     InitGL(Xsize,Ysize);
     if(aflag==1)/* Initialize our window. */
-    glClearColor(1,1,1,1);
+    glClearColor(1,1,1,0); // warna latar
     else
-    glClearColor(0.1,0.1,0.1,0);
+    glClearColor(0.1,0.1,0.1,0); // warna night mode
     glPushMatrix();
     glLoadIdentity();
     glTranslatef(-1.0,0.0,-3.5);
@@ -136,7 +137,7 @@ GLvoid DrawGLScene()
     glScalef(xs,ys,zs);
     glEnable(GL_COLOR_MATERIAL);
 
-    if(flag2==1)
+    if(kabut==1)
     {
     GLfloat fogcolour[4]={1.0,1.0,1.0,1.0};
     glFogfv(GL_FOG_COLOR,fogcolour);
@@ -148,12 +149,12 @@ GLvoid DrawGLScene()
     glEnable(GL_FOG);
     }
 
-    if(flag2==0)
+    if(kabut==0)
     {
         glDisable(GL_FOG);
     }
 
-    if(!aflag)
+    if(!aflag)//lampu
     {
         glBegin(GL_POINTS);
         glColor3f(1,1,1);
@@ -350,7 +351,7 @@ GLvoid DrawGLScene()
     glVertex3f( 0.6, 0.5,0.6);
     glVertex3f(0.6, 0.5,0.2);        //quad front window
     glVertex3f(0.7, 0.65, 0.2);
-    glVertex3f( 0.7,0.65,0.6);
+    glVertex3f(0.7,0.65,0.6);
 
     glVertex3f(1.7,0.65,.6);
     glVertex3f(1.7,0.65,0.2);        //quad back window
@@ -358,7 +359,7 @@ GLvoid DrawGLScene()
     glVertex3f(1.8,0.5,0.6);
 
     //*****************************JALANAN DAN EFEK RODA***********************************
-    if(flag1)
+    if(cardriving)
     {
         glPushMatrix();
         glTranslatef(xw,0,0);
@@ -453,7 +454,7 @@ GLvoid DrawGLScene()
     gluCylinder(t,0.02,0.03,.5,10,10);
     glPopMatrix();
     //********************BAN MOBIL
-    glColor3f(0.7,0.7,0.7);
+    glColor3f(0.7,0.7,0.7); //warna velg
     glPushMatrix();
     glBegin(GL_LINE_STRIP);
     for(theta=0;theta<360;theta=theta+40)
@@ -488,7 +489,7 @@ GLvoid DrawGLScene()
     glEnd();
 
     glTranslatef(0.6,0.2,0.6);
-    glColor3f(0,0,0);
+    glColor3f(0,0,0); //warna ban
     glutSolidTorus(0.025,0.07,10,25);
 
     glTranslatef(0,0,-0.4);
@@ -519,7 +520,7 @@ void NormalKey(GLubyte key, GLint x, GLint y)
         exit(0);
         break;
 
-        case ' ':view=1;
+        case ' ':view=1; //tekan spasi=pindah tampilan
         DrawGLScene();
         break;
 
@@ -610,26 +611,26 @@ static void SpecialKeyFunc( int Key, int x, int y )
 
 void myMenu(int id)
 {
-     if (id==1)
+     if (id==1) //car model mode
 	{
-		flag1=0;
+		cardriving=0;
         wheelflag=0;
         glutPostRedisplay();
 	}
-	if(id ==2)
+	if  (id==2) //car driving mode
 	{
-		flag1=1;
-		flag2=0;
+		cardriving=1;
+		kabut=0;
 		wheelflag=0;
 		xangle += 5.0;
 		glutPostRedisplay();
 	}
 	if (id==4)
 	{
-        wheelflag=1;
+        wheelflag=1; //wheel effect
         glutPostRedisplay();
 	}
-    if(id==12)
+    if  (id==12) //day mode
 	{
         aflag=1;
         day=1;
@@ -637,11 +638,11 @@ void myMenu(int id)
         glDisable(GL_FOG);
         glutPostRedisplay();
 	}
-	if(id==13)
+	if  (id==13) //nightmode
 	{
         aflag=0;
         day=0;
-        flag2=2;
+        kabut=2;
         glClearColor(0.1,0.1,0.1,0);
         GLfloat fogcolour[4]={0.0,0.0,0.0,1.0};
 
@@ -657,36 +658,36 @@ void myMenu(int id)
 
 void colorMenu(int id)
 {
-    if (id==6)
+    if (id==6) //biru
 	{
         r=g=0;
 		b=1;
         glutPostRedisplay();
 	}
-    if(id ==7)
+    if(id ==7) //merah
 	{
 		r=0.8;
 		b=g=0;
 		glutPostRedisplay();
 	}
-	if(id==8)
+	if(id==8) //hijau
 	{
 	    g=1;
 		r=b=0;
 		glutPostRedisplay();
 	}
-	if (id==9)
+	if (id==9) //hitam
 	{
         r=b=g=0;
         glutPostRedisplay();
 	}
-	if(id==10)
+	if(id==10) //kuning
 	{
 		b=0;
 		r=g=1;
         glutPostRedisplay();
 	}
-	if(id==11)
+	if(id==11) //abuabu
 	{
 		b=r=g=0.7;
         glutPostRedisplay();
